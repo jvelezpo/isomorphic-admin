@@ -6,6 +6,9 @@ import { connect } from 'react-redux';
 import App from './containers/App/App';
 import asyncComponent from './helpers/AsyncFunc';
 import Auth0 from './helpers/auth0';
+import PermissionRoute from './components/permission-route';
+
+import { IS_GUEST } from './constants';
 
 const RestrictedRoute = ({ component: Component, isLoggedIn, ...rest }) => (
   <Route
@@ -20,16 +23,25 @@ const RestrictedRoute = ({ component: Component, isLoggedIn, ...rest }) => (
         />}
   />
 );
-const PublicRoutes = ({ history, isLoggedIn }) => {
+const PublicRoutes = ({ history, isLoggedIn, auth }) => {
   console.log('isLoggedIn', isLoggedIn);
+  console.log('ROUTER props', this.props);
+  console.log('ROUTER auth', auth);
   return (
     <ConnectedRouter history={history}>
       <div>
-        <Route
+        {/* <Route
           exact
           path={'/'}
           component={asyncComponent(() => import('./containers/Page/signin'))}
-        />
+        /> */}
+        <PermissionRoute
+                      parentState={auth}
+                      component={asyncComponent(() => import('./containers/Page/signin'))}
+                      only={[IS_GUEST]}
+                      path="/"
+                      exact
+                    />
         <Route
           exact
           path={'/404'}
@@ -81,4 +93,5 @@ const PublicRoutes = ({ history, isLoggedIn }) => {
 
 export default connect(state => ({
   isLoggedIn: state.Auth.get('idToken') !== null,
+  auth: state.Auth
 }))(PublicRoutes);

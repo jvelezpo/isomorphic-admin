@@ -6,7 +6,7 @@ export function createThunkMiddleware() {
   return ({ dispatch, getState }) => next => action => {
     if (typeof action === 'function') {
       console.log('AXIOS AXIOS', getState());
-      const jwt = getState().Auth.idToken || '';
+      const jwt = getState().Auth.get('idToken') || '';
       const axiosClient = axios.create({
         baseURL: getApiUrl(),
         responseType: 'json'

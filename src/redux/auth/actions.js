@@ -1,11 +1,11 @@
-import { getToken } from '../../helpers/utility';
+import { getToken, clearToken } from '../../helpers/utility';
 
 const actions = {
   CHECK_AUTHORIZATION: 'CHECK_AUTHORIZATION',
-  LOGIN_REQUEST: 'LOGIN_REQUEST',
   LOGOUT: 'LOGOUT',
   LOGIN_SUCCESS: 'LOGIN_SUCCESS',
   LOGIN_ERROR: 'LOGIN_ERROR',
+  GET_CURRENT_USER: 'GET_CURRENT_USER',
   checkAuthorization: () => {
     return (dispatch, getState, http) => {
       const token = getToken().get('idToken');
@@ -14,10 +14,10 @@ const actions = {
           type: actions.LOGIN_SUCCESS,
           token
         });
+        dispatch(actions.getCurrentUser());
       }
     }
   },
-  // ({ type: actions.CHECK_AUTHORIZATION }),
   login: (user) => {
     return (dispatch, getState, http) => {
       http.post('/auth/login', {
@@ -32,6 +32,9 @@ const actions = {
           token: response.data.accessToken
         })
       })
+      .then(() => {
+        return dispatch(actions.getCurrentUser());
+      })
       .catch(function (error) {
         console.log(error);
         dispatch({
@@ -40,8 +43,27 @@ const actions = {
       });
     };
   },
-  logout: () => ({
-    type: actions.LOGOUT
-  })
+  logout: () => {
+    clearToken();
+  },
+  getCurrentUser: () => {
+    return (dispatch, getState, http) => {
+      return http({
+        method: 'GET',
+        url: '/users/me'
+      })
+        .then(response => {
+          console.log('getCurrentUser', response);
+          return dispatch({
+            type: actions.GET_CURRENT_USER,
+            payload: response.data
+          });
+        })
+        .catch(err => {
+          console.log('ERRRO getCurrentUser', err);
+          return dispatch(actions.logout());
+        });
+    };
+  }
 };
 export default actions;
