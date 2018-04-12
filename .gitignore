@@ -1,0 +1,39 @@
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/typings
+
+# testing
+/coverage
+
+# production
+/build
+
+# debugging
+/.vscode/
+
+# deployment folders
+/deploy/node_modules
+
+# misc
+.DS_Store
+.env
+launch.json
+.idea/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+/**/*.js.map
+**/.DS_Store
+.ENV
+
+# generator folders
+generator/node_modules
+
+# cypress files
+cypress/screenshots/*
+cypress/videos/*
+
+# webstorm history
+.history
