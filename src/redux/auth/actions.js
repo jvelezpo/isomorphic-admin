@@ -44,7 +44,12 @@ const actions = {
     };
   },
   logout: () => {
-    clearToken();
+    return (dispatch, getState, http) => {
+      clearToken();
+      dispatch({
+        type: actions.LOGOUT
+      });
+    }
   },
   getCurrentUser: () => {
     return (dispatch, getState, http) => {

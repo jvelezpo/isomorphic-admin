@@ -24,24 +24,16 @@ const RestrictedRoute = ({ component: Component, isLoggedIn, ...rest }) => (
   />
 );
 const PublicRoutes = ({ history, isLoggedIn, auth }) => {
-  console.log('isLoggedIn', isLoggedIn);
-  console.log('ROUTER props', this.props);
-  console.log('ROUTER auth', auth);
   return (
     <ConnectedRouter history={history}>
       <div>
-        {/* <Route
-          exact
-          path={'/'}
-          component={asyncComponent(() => import('./containers/Page/signin'))}
-        /> */}
         <PermissionRoute
-                      parentState={auth}
-                      component={asyncComponent(() => import('./containers/Page/signin'))}
-                      only={[IS_GUEST]}
-                      path="/"
-                      exact
-                    />
+          parentState={auth}
+          component={asyncComponent(() => import('./containers/Page/signin'))}
+          only={[IS_GUEST]}
+          path="/"
+          exact
+        />
         <Route
           exact
           path={'/404'}

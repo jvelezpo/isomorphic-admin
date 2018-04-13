@@ -29,10 +29,9 @@ export function createThunkMiddleware() {
         function(error) {
           let response = error.response;
           if (response && response.status === 401 && jwt) {
-            const StoreInstance = store();
-            StoreInstance.persistor.purge();
-
-            // location.replace('/login');
+            // const StoreInstance = store();
+            store.purge();
+            // location.replace('/');
           }
           return Promise.reject(response && response.data ? response.data : error);
         }
