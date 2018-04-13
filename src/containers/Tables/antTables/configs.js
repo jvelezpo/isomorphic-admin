@@ -121,6 +121,11 @@ const tableinfos = [
     title: 'Customized View',
     value: 'customizedView',
     columns: clone(columns)
-  }
+  },
+  {
+    title: 'Users',
+    value: 'usersView',
+    columns: clone(smallColumns)
+  },
 ];
 export { columns, tableinfos };

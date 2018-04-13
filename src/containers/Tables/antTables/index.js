@@ -27,6 +27,9 @@ export default class AntTable extends Component {
       case 'customizedView':
         Component = TableViews.CustomizedView;
         break;
+      case 'usersView':
+        Component = TableViews.FilterView;
+        break;
       default:
         Component = TableViews.SimpleView;
     }
