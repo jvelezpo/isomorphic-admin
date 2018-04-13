@@ -606,7 +606,9 @@
   "checkout.billingform.addressoptional":
     "Apartment   suite   unit etc. (optional",
   "checkout.billingform.checkbox": "Create an account?",
+  "antTable.title.id": "Id",
   "antTable.title.image": "Image",
+  "antTable.title.name": "Name",
   "antTable.title.firstName": "First Name",
   "antTable.title.lastName": "Last Name",
   "antTable.title.city": "City",

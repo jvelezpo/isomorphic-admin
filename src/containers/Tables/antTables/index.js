@@ -12,6 +12,9 @@ export default class AntTable extends Component {
   renderTable(tableInfo) {
     let Component;
     switch (tableInfo.value) {
+      case 'usersView':
+        Component = TableViews.UsersView;
+        break;
       case 'sortView':
         Component = TableViews.SortView;
         break;
@@ -26,9 +29,6 @@ export default class AntTable extends Component {
         break;
       case 'customizedView':
         Component = TableViews.CustomizedView;
-        break;
-      case 'usersView':
-        Component = TableViews.FilterView;
         break;
       default:
         Component = TableViews.SimpleView;

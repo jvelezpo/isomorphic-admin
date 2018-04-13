@@ -21,7 +21,26 @@ const renderCell = (object, type, key) => {
       return TextCell(value);
   }
 };
-
+const usersColumns = [
+  {
+    title: <IntlMessages id="antTable.title.id" />,
+    key: '_id',
+    width: 100,
+    render: object => renderCell(object, 'TextCell', '_id')
+  },
+  {
+    title: <IntlMessages id="antTable.title.name" />,
+    key: 'name',
+    width: 100,
+    render: object => renderCell(object, 'TextCell', 'name')
+  },
+  {
+    title: <IntlMessages id="antTable.title.email" />,
+    key: 'email',
+    width: 100,
+    render: object => renderCell(object, 'TextCell', 'email')
+  },
+]
 const columns = [
   {
     title: <IntlMessages id="antTable.title.image" />,
@@ -93,6 +112,11 @@ const groupColumns = [
 ];
 const tableinfos = [
   {
+    title: 'Users',
+    value: 'usersView',
+    columns: clone(usersColumns)
+  },
+  {
     title: 'Simple Table',
     value: 'simple',
     columns: clone(smallColumns)
@@ -121,11 +145,6 @@ const tableinfos = [
     title: 'Customized View',
     value: 'customizedView',
     columns: clone(columns)
-  },
-  {
-    title: 'Users',
-    value: 'usersView',
-    columns: clone(smallColumns)
   },
 ];
 export { columns, tableinfos };

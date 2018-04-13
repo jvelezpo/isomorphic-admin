@@ -622,7 +622,9 @@
   "checkout.billingform.addressoptional":
     "Apartamento   suite   unidad   etc. (opcional  ",
   "checkout.billingform.checkbox": "¿Crea una cuenta?",
+  "antTable.title.id": "Id",
   "antTable.title.image": "Imagen",
+  "antTable.title.name": "Nombre",
   "antTable.title.firstName": "Nombre de pila",
   "antTable.title.lastName": "Apellido",
   "antTable.title.city": "Ciudad",

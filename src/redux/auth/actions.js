@@ -25,7 +25,6 @@ const actions = {
         password: user.password
       })
       .then(function (response) {
-        console.log(response);
         localStorage.setItem('id_token', response.data.accessToken);
         dispatch({
           type: actions.LOGIN_SUCCESS,
@@ -36,7 +35,6 @@ const actions = {
         return dispatch(actions.getCurrentUser());
       })
       .catch(function (error) {
-        console.log(error);
         dispatch({
           type: actions.LOGIN_ERROR
         })
@@ -58,14 +56,12 @@ const actions = {
         url: '/users/me'
       })
         .then(response => {
-          console.log('getCurrentUser', response);
           return dispatch({
             type: actions.GET_CURRENT_USER,
             payload: response.data
           });
         })
         .catch(err => {
-          console.log('ERRRO getCurrentUser', err);
           return dispatch(actions.logout());
         });
     };

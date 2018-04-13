@@ -22,8 +22,6 @@ const { logout } = authAction;
 const { toggleAll } = appActions;
 export class App extends Component {
   render() {
-    console.log('dashboard props', this.props);
-    console.log('dashboard props', this.props.auth.get('user'));
     const { url } = this.props.match;
     const { locale, selectedTheme, height } = this.props;
     const currentAppLocale = AppLocale[locale];
